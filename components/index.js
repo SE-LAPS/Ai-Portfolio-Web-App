@@ -1,63 +1,21 @@
-import React from "react";
-import "./style.css";
-import {
-  FaGithub,
-  FaTwitter,
-  FaFacebookF,
-  FaLinkedin,
-  FaYoutube,
-  FaTwitch,
-} from "react-icons/fa";
-import { socialprofils } from "../../content_option";
+import React, { useEffect, useState } from "react";
+import { WiMoonAltWaningCrescent4 } from "react-icons/wi";
 
-export const Socialicons = (params) => {
+
+const Themetoggle = () => {
+  const [theme, settheme] = useState(localStorage.getItem("theme"));
+  const themetoggle = () => {
+    settheme(theme === "dark" ? "light" : "dark");
+  };
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme ); 
+  }, [theme]);
   return (
-    <div className="stick_follow_icon">
-      <ul>
-        {socialprofils.twitter && (
-          <li>
-            <a href={socialprofils.twitter}>
-              <FaTwitter />
-            </a>
-          </li>
-        )}
-        {socialprofils.github && (
-          <li>
-            <a href={socialprofils.github}>
-              <FaGithub />
-            </a>
-          </li>
-        )}
-        {socialprofils.facebook && (
-          <li>
-            <a href={socialprofils.facebook}>
-              <FaFacebookF />
-            </a>
-          </li>
-        )}
-        {socialprofils.linkedin && (
-          <li>
-            <a href={socialprofils.linkedin}>
-              <FaLinkedin />
-            </a>
-          </li>
-        )}
-        {socialprofils.youtube && (
-          <li>
-            <a href={socialprofils.youtube}>
-              <FaYoutube />
-            </a>
-          </li>
-        )}
-        {socialprofils.twitch && (
-          <li>
-            <a href={socialprofils.twitch}>
-              <FaTwitch />
-            </a>
-          </li>
-        )}
-      </ul>
-      <p>Follow Me</p>
+    <div className="nav_ac" onClick={themetoggle}>
+      <WiMoonAltWaningCrescent4 />
     </div>
   );
 };
+
+export default Themetoggle;
